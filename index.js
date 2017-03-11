@@ -17,6 +17,12 @@ app.use(bodyParser.urlencoded({extended: false}))
 // Process application/json
 app.use(bodyParser.json())
 
+// Process get started button
+app.get('/setup',function(req,res){
+
+    functs.setupGetStartedButton(res);
+});
+
 app.get('/', function (req, res)
 {
     console.log("plain GET request");

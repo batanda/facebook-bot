@@ -70,6 +70,19 @@ processMessageWithAttachements: function(senderId, messageText, messageAttacment
     console.log("Stub: process the message and attachments and send a response")
 },
 
+// getStarted button
+setupGetStartedButton: function(res)
+{
+  var messageData = {
+                "get_started":[
+                {
+                    "payload":"justPayload"
+                    }
+                ]
+        };
+  callSendAPI(res);
+},
+
 sendGenericMessage: function(toId)
 {
   console.log("Sending message with 2 Cards to id: " + toId)
