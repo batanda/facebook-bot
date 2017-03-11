@@ -1,6 +1,6 @@
 const request = require('request')
 
-const PAGE_ACCESS_TOKEN = "EAAKTalAQ2eoBEAXiFuMH3AZWarRff1dYSNSU9hTtAZxgXPkTarahOyXUH9wUxBZaTQacCZyyv24DRQAZsgD2u0L76EMSmz5zDJYbKAZH5ZCIBcNZALf2SNJS9mgVq0oSH56ZAoOFwf2PbFZCPCQmVgWqfDKhUXVSUqlVv2OWYKKEzVcAZDZD"
+const PAGE_ACCESS_TOKEN = "EAADvMZC7RAZCgBAPZCKShM436aCGZByoKZAXTnQN5vLAudGOOMxWYRBZCHBMVyjZClKsP4NwBZCncnP8z08Q3s6HTimPp8fSKMPtGqGgoSUbXC5VfYYQjJk2TiZAHZBcyT6ZAozR2rW2HOW0kXbZABscLGMJ58ptkMKUYllTN1uBozkVqwZDZD"
 
 module.exports = {
 receivedMessage: function(event)
@@ -83,16 +83,16 @@ doPostback: function(event)
 };
 
 function callSendAPI(messageData)
-{ 
+{
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
     qs: { access_token: PAGE_ACCESS_TOKEN },
     method: 'POST',
     json: messageData
 
-  },function (error, response, body) 
+  },function (error, response, body)
     {
-        if (error) 
+        if (error)
         {
             console.log('Error sending message: ')
             console.log(response);
@@ -102,9 +102,9 @@ function callSendAPI(messageData)
         {
             console.log('Error sending message, response code not 200: ' + response.statusCode);
         }
-        else if (response.body.error) 
+        else if (response.body.error)
         {
             console.log('Error: ', response.body.error)
         }
-    });  
+    });
 }
