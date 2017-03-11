@@ -29,8 +29,10 @@ processMessage: function(fromId, myId, timestamp, message)
     // Add logic here to determine appropriate response. For now, just echo it.
 
     textResponse = this.getResponse(message);
-    if (textResponse == "structured")
-        this.sendGenericMessage(fromId)
+    if (textResponse == "post trip")
+      this.postTripButton(fromId)
+    // if (textResponse == "structured")
+    //     this.sendGenericMessage(fromId)
     else
         this.sendTextMessage(fromId, textResponse)
 },
@@ -45,6 +47,8 @@ getResponse: function(message)
         rsp = "structured"
     if (message.text == "Knock Knock")
         rsp = "Who's There?"
+    if (message.text == "post trip")
+        rsp = "post trip"
 
     return rsp;
 },
@@ -81,6 +85,49 @@ setupGetStartedButton: function(res)
                 ]
         };
   callSendAPI(res);
+},
+
+postTripButton: function(toId)
+{
+  console.log("Sending message with 2 Cards to id: " + toId)
+  var messageData = {
+    recipient: {
+      id: toId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [
+            {
+            title: "JustNet",
+            subtitle: "In Kigali",
+            item_url: "http://www.cmu.edu/africa/about-cmur/index.html",
+            image_url: "http://www.cmu.edu/africa/files/images/bios/About%20CMU%20Rwanda.jpg",
+            buttons:
+            [{
+              type: "postback",
+              title: "Post Trip",
+              payload: "help me post trip",
+            }]
+            },{
+            title: "Bot Party",
+            subtitle: "Bots for Messenger Challenge",
+            item_url: "https://messengerchallenge.splashthat.com/",
+            image_url: "https://d24wuq6o951i2g.cloudfront.net/img/events/id/272/2724336/assets/d0c.BotforMess_Splash.png",
+            buttons:
+            [{
+              type: "postback",
+              title: "Request courier",
+              payload: "help me request courier",
+            }],
+            }]
+        }
+      }
+    }
+  };
+  callSendAPI(messageData);
 },
 
 sendGenericMessage: function(toId)
