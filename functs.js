@@ -72,7 +72,53 @@ processMessageWithAttachements: function(senderId, messageText, messageAttacment
 
 sendGenericMessage: function(toId)
 {
-  console.log("Stub: send generic (templated) message");
+  console.log("Sending message with 2 Cards to id: " + toId)
+  var messageData = {
+    recipient: {
+      id: toId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [
+            {
+            title: "CMU-Africa",
+            subtitle: "In Kigali",
+            item_url: "http://www.cmu.edu/africa/about-cmur/index.html",
+            image_url: "http://www.cmu.edu/africa/files/images/bios/About%20CMU%20Rwanda.jpg",
+            buttons:
+            [{
+              type: "web_url",
+              url: "http://www.cmu.edu/africa/",
+              title: "CMU Africa"
+            },{
+              type: "postback",
+              title: "Help Me Apply",
+              payload: "help me apply",
+            }]
+            },{
+            title: "Bot Party",
+            subtitle: "Bots for Messenger Challenge",
+            item_url: "https://messengerchallenge.splashthat.com/",
+            image_url: "https://d24wuq6o951i2g.cloudfront.net/img/events/id/272/2724336/assets/d0c.BotforMess_Splash.png",
+            buttons:
+            [{
+              type: "web_url",
+              url: "https://messengerchallenge.splashthat.com/",
+              title: "Facebook Messenger Challenge"
+            },{
+              type: "postback",
+              title: "Please do something for me",
+              payload: "Payload for Please do something for me bubble",
+            }],
+            }]
+        }
+      }
+    }
+  };
+  callSendAPI(messageData);
 },
 
 doPostback: function(event)
