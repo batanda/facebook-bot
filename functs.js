@@ -73,7 +73,7 @@ processMessageWithAttachements: function(senderId, messageText, messageAttacment
 sendGenericMessage: function(toId)
 {
   console.log("Stub: send generic (templated) message");
-}
+},
 
 doPostback: function(event)
 {
