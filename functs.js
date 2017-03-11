@@ -41,7 +41,7 @@ processMessage: function(fromId, myId, timestamp, message)
 
 getResponse: function(message)
 {
-    var rsp = "My Bot thanks you for your message: " + message.text;
+    //var rsp = "My Bot thanks you for your message: " + message.text;
 
     if (message.text == "structured")
         rsp = "structured"
